@@ -25,6 +25,9 @@ package = false
 testpaths = ["tests"]
 pythonpath = ["tools"]
 addopts = "-q"
+markers = [
+    "network: needs a network connection to resolve packages (uv lock, uv sync)",
+]
 
 [tool.ruff]
 line-length = 100
