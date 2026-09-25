@@ -25,8 +25,9 @@ TOOLS = [
     "readability_check.py",
     "readme_sections.py",
 ]
-# Files every generated repo must have (PORTFOLIO_PLAN.md section 3.2). The lockfile is
-# written by `make setup` in the new repo, so it is not in this list.
+# Files every generated repo must have (PORTFOLIO_PLAN.md section 3.2). The lockfile
+# comes from the template's `uv lock` task (see test_uv_lock_task_writes_lockfile
+# below), not from a rendered file, so it is not in this list.
 REQUIRED = [
     "README.md",
     "LICENSE",
@@ -61,7 +62,10 @@ REQUIRED = [
 BASE = {"project_name": "demo-project", "one_line": "Scores a demo dataset and shows its work."}
 
 
-def render(dest: Path, **answers: Any) -> Path:
+def render(dest: Path, *, skip_tasks: bool = True, **answers: Any) -> Path:
+    # skip_tasks=True by default: most of these tests only check rendered files, so
+    # they skip the template's `uv lock` task to stay fast and offline. The one test
+    # that checks the task itself (test_uv_lock_task_writes_lockfile) turns it back on.
     run_copy(
         str(REPO),
         dest,
@@ -69,7 +73,10 @@ def render(dest: Path, **answers: Any) -> Path:
         defaults=True,
         vcs_ref="HEAD",
         quiet=True,
-        unsafe=False,
+        # Running the `uv lock` task counts as an "unsafe" template feature to Copier.
+        # It is this repo's own template, so trusting it here is safe.
+        unsafe=not skip_tasks,
+        skip_tasks=skip_tasks,
     )
     return dest
 
@@ -160,3 +167,17 @@ def test_model_and_dataset_files_follow_answers(tmp_path: Path) -> None:
 def test_bad_project_name_is_refused(tmp_path: Path) -> None:
     with pytest.raises(ValueError):
         render(tmp_path / "bad", project_name="Bad Name")
+
+
+@pytest.mark.network
+def test_uv_lock_task_writes_lockfile(tmp_path: Path) -> None:
+    """The template's `uv lock` task must leave a lockfile that `uv sync --locked`
+    accepts, so a freshly generated repo's own CI does not fail on its first push
+    (docs/decisions/0006-the-generated-lockfile.md)."""
+    root = render(tmp_path / "lock-project", skip_tasks=False)
+    lockfile = root / "uv.lock"
+    assert lockfile.is_file(), "the uv lock task did not write uv.lock"
+    result = subprocess.run(
+        ["uv", "sync", "--locked"], cwd=root, capture_output=True, text=True, check=False
+    )
+    assert result.returncode == 0, result.stdout + result.stderr

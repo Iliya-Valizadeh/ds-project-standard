@@ -62,6 +62,10 @@ def render(dest: Path) -> Path:
         vcs_ref="HEAD",
         quiet=True,
         unsafe=False,
+        # Skip the template's `uv lock` task (see docs/decisions/0006). The example
+        # intentionally has no uv.lock (decision 0005), and the plain `check` command
+        # needs neither uv nor a network connection.
+        skip_tasks=True,
     )
     answers = dest / ANSWERS_FILE
     lines = answers.read_text(encoding="utf-8").splitlines()
