@@ -1,0 +1,78 @@
+# Copier settings for a new portfolio repo.
+#
+# New repo:     copier copy --trust gh:Iliya-Valizadeh/ds-project-standard my-repo
+# Sync a repo:  copier update --trust   (run inside the generated repo)
+#
+# The `_tasks` below run `uv lock` right after generation, so the new repo already has
+# a `uv.lock` that matches its `pyproject.toml`. Commit it with everything else, then
+# `make setup` to create the virtual environment. Without this, the generated repo's
+# own CI (which runs `uv sync --locked`) would fail on its first push: there would be
+# no lockfile yet to check against (see docs/decisions/0006-the-generated-lockfile.md).
+# `--trust` is needed because a task that runs a shell command is an "unsafe" template
+# feature to Copier. This is Iliya's own template, so trusting it is safe.
+#
+# The files a new repo gets are in template/. The checks in tools/ are copied into
+# each repo from this repo's own tools/ folder (see template/tools/*.jinja), so there
+# is one source for them and `copier update` brings every repo up to date.
+
+_min_copier_version: "9.0"
+_subdirectory: template
+_answers_file: .copier-answers.yml
+_tasks:
+  - command: uv lock
+
+project_name:
+  type: str
+  help: Repo name, in lower case with hyphens (for example fraud-review-queue)
+  validator: >-
+    {% if not (project_name | regex_search('^[a-z][a-z0-9]*(-[a-z0-9]+)*$')) %}
+    Use lower case letters, digits and single hyphens, starting with a letter.
+    {% endif %}
+
+package_name:
+  type: str
+  help: Python package name under src/
+  default: "{{ project_name | replace('-', '_') }}"
+  validator: >-
+    {% if not (package_name | regex_search('^[a-z][a-z0-9_]*$')) %}
+    Use lower case letters, digits and underscores, starting with a letter.
+    {% endif %}
+
+one_line:
+  type: str
+  help: One sentence that says what the project does (README first line and GitHub description)
+  validator: "{% if not one_line.strip() %}Write one sentence.{% endif %}"
+
+author_name:
+  type: str
+  help: Author name for the license and pyproject.toml
+  default: Iliya Valizadeh
+
+github_user:
+  type: str
+  help: GitHub user or organization that will own the repo
+  default: Iliya-Valizadeh
+
+copyright_year:
+  type: int
+  help: Year for the MIT license line
+  default: "{{ '%Y' | strftime }}"
+
+python_version:
+  type: str
+  help: Lowest Python version the project supports
+  default: "3.11"
+  choices:
+    - "3.11"
+    - "3.12"
+    - "3.13"
+
+has_model:
+  type: bool
+  help: Does the project train or use a model? (adds MODEL_CARD.md)
+  default: true
+
+has_dataset:
+  type: bool
+  help: Does the project build or publish a dataset? (adds DATASHEET.md)
+  default: false
