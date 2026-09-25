@@ -42,6 +42,7 @@ REQUIRED = [
     "AI_USAGE.md",
     "CHANGELOG.md",
     "reports/metrics.json",
+    "reports/figures/mae_by_model.png",
     "Makefile",
     "pyproject.toml",
     ".github/workflows/ci.yml",
@@ -49,8 +50,11 @@ REQUIRED = [
     ".copier-answers.yml",
     ".gitignore",
     ".gitattributes",
-    "src/demo_project/__init__.py",
-    "tests/test_placeholders.py",
+    *[
+        f"src/demo_project/{name}.py"
+        for name in ("__init__", "data", "models", "metrics", "plots", "evaluate", "demo")
+    ],
+    "tests/test_pipeline.py",
     *[f"tools/{name}" for name in TOOLS],
 ]
 BASE = {"project_name": "demo-project", "one_line": "Scores a demo dataset and shows its work."}
