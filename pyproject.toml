@@ -1,0 +1,50 @@
+[project]
+name = "ds-project-standard"
+version = "0.1.0"
+description = "A Copier template and the checks that keep every repo honest and readable."
+readme = "tools/README.md"
+license = "MIT"
+requires-python = ">=3.11"
+dependencies = [
+    "textstat>=0.7.4",
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.10",
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.5",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["tools"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+
+[tool.ruff.lint.isort]
+known-first-party = [
+    "_markdown", "ai_signs_check", "claims_check", "links_check", "readability_check",
+    "readme_sections",
+]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["tools", "tests"]
+mypy_path = "tools"
+explicit_package_bases = true
+
+[[tool.mypy.overrides]]
+module = ["textstat", "textstat.*"]
+ignore_missing_imports = true
