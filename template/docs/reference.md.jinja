@@ -1,0 +1,25 @@
+# Reference
+
+Facts to look up: commands, files and settings.
+
+## Make targets
+
+| Target | What it does |
+|---|---|
+| `make setup` | Installs the pinned packages with `uv` |
+| `make lint` | Runs ruff and mypy |
+| `make test` | Runs pytest with a coverage report for `src/` |
+| `make eval` | Runs the evaluation and writes `reports/metrics.json` |
+| `make demo` | Runs a short demo that needs no downloads or keys |
+| `make check-docs` | Runs the claims, readability, AI-writing signs, link and README checks |
+| `make all` | Runs every step above in order |
+
+## Output files
+
+| File | What it holds |
+|---|---|
+| `reports/metrics.json` | The headline numbers, read by `CLAIMS.md` and the portfolio site |
+
+## Package
+
+TODO: the main modules in `src/{{ package_name }}/` and what each one does.

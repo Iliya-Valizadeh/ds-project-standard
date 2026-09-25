@@ -1,0 +1,19 @@
+"""Tests for the template's placeholder entry points. Replace them with real tests."""
+
+from __future__ import annotations
+
+from types import ModuleType
+
+import pytest
+
+from {{ package_name }} import __version__, demo, evaluate
+
+
+def test_version_is_set() -> None:
+    assert __version__
+
+
+@pytest.mark.parametrize("module", [demo, evaluate])
+def test_entry_point_exits_cleanly(module: ModuleType, capsys: pytest.CaptureFixture[str]) -> None:
+    assert module.main() == 0
+    assert capsys.readouterr().out
