@@ -1,0 +1,11 @@
+# Written by Copier. Do not edit by hand; `copier update` reads it.
+_src_path: gh:Iliya-Valizadeh/ds-project-standard
+author_name: Iliya Valizadeh
+copyright_year: 2026
+github_user: Iliya-Valizadeh
+has_dataset: false
+has_model: true
+one_line: An example repo made from the ds-project-standard template.
+package_name: example_project
+project_name: example-project
+python_version: '3.11'
