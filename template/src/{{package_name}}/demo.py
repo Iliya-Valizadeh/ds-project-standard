@@ -1,14 +1,26 @@
 """Short demo for `make demo`. It must run with no downloads and no keys.
 
-This is a placeholder from the template. Replace it with a demo that runs the real
-pipeline on a small built-in sample.
+It runs the same evaluation as `make eval` on the built-in synthetic data and prints
+the result. It writes no files. Replace it with a demo of your real pipeline.
 """
 
 from __future__ import annotations
 
+from .evaluate import run_evaluation
+
+
+def _line(label: str, est: dict[str, float]) -> str:
+    interval = f"(95% interval {est['ci_low']:.3f} to {est['ci_high']:.3f})"
+    return f"{label:<28}{est['value']:.3f}  {interval}"
+
 
 def main() -> int:
-    print("No demo yet. Replace src/<package>/demo.py with a real one.")
+    metrics, _ = run_evaluation()
+    print(f"Synthetic data: {metrics['n_train']} training rows, {metrics['n_test']} test rows.")
+    print("Mean absolute error on the test rows (lower is better):")
+    print(_line("  Baseline (training mean)", metrics["baseline"]))
+    print(_line("  Linear model", metrics["model"]))
+    print(_line("  Gap (baseline - model)", metrics["mae_gap"]))
     return 0
 
 
