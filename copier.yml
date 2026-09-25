@@ -1,0 +1,69 @@
+# Copier settings for a new portfolio repo.
+#
+# New repo:     copier copy gh:Iliya-Valizadeh/ds-project-standard my-repo
+# Sync a repo:  copier update   (run inside the generated repo)
+# Then run `make setup` in the new repo. It writes uv.lock, which you commit.
+#
+# The files a new repo gets are in template/. The checks in tools/ are copied into
+# each repo from this repo's own tools/ folder (see template/tools/*.jinja), so there
+# is one source for them and `copier update` brings every repo up to date.
+
+_min_copier_version: "9.0"
+_subdirectory: template
+_answers_file: .copier-answers.yml
+
+project_name:
+  type: str
+  help: Repo name, in lower case with hyphens (for example fraud-review-queue)
+  validator: >-
+    {% if not (project_name | regex_search('^[a-z][a-z0-9]*(-[a-z0-9]+)*$')) %}
+    Use lower case letters, digits and single hyphens, starting with a letter.
+    {% endif %}
+
+package_name:
+  type: str
+  help: Python package name under src/
+  default: "{{ project_name | replace('-', '_') }}"
+  validator: >-
+    {% if not (package_name | regex_search('^[a-z][a-z0-9_]*$')) %}
+    Use lower case letters, digits and underscores, starting with a letter.
+    {% endif %}
+
+one_line:
+  type: str
+  help: One sentence that says what the project does (README first line and GitHub description)
+  validator: "{% if not one_line.strip() %}Write one sentence.{% endif %}"
+
+author_name:
+  type: str
+  help: Author name for the license and pyproject.toml
+  default: Iliya Valizadeh
+
+github_user:
+  type: str
+  help: GitHub user or organization that will own the repo
+  default: Iliya-Valizadeh
+
+copyright_year:
+  type: int
+  help: Year for the MIT license line
+  default: "{{ '%Y' | strftime }}"
+
+python_version:
+  type: str
+  help: Lowest Python version the project supports
+  default: "3.11"
+  choices:
+    - "3.11"
+    - "3.12"
+    - "3.13"
+
+has_model:
+  type: bool
+  help: Does the project train or use a model? (adds MODEL_CARD.md)
+  default: true
+
+has_dataset:
+  type: bool
+  help: Does the project build or publish a dataset? (adds DATASHEET.md)
+  default: false
