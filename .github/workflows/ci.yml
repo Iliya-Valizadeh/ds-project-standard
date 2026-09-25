@@ -1,0 +1,99 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  tools:
+    name: tools/ (ruff, mypy, pytest)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.11"
+          enable-cache: true
+
+      - name: Install pinned packages
+        run: uv sync --locked
+
+      - name: Lint and types (ruff, mypy)
+        run: |
+          uv run ruff check .
+          uv run ruff format --check .
+          uv run mypy
+
+      # tests/test_example.py runs `scripts/example.py check` (no --eval) as part of
+      # this suite, so a template change that was not regenerated into examples/ also
+      # fails here.
+      - name: Tests (pytest)
+        run: uv run pytest
+
+  example-eval:
+    name: examples/example-project (regenerate + rerun evaluation)
+    runs-on: ubuntu-latest
+    needs: tools
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.11"
+          enable-cache: true
+
+      - name: Install pinned packages
+        run: uv sync --locked
+
+      - name: Regenerate the example and rerun its evaluation, fail on drift
+        run: uv run python scripts/example.py check --eval
+
+  example-gates:
+    name: examples/example-project (its own quality gates)
+    runs-on: ubuntu-latest
+    needs: tools
+    defaults:
+      run:
+        working-directory: examples/example-project
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.11"
+          enable-cache: true
+
+      # The example commits no uv.lock on purpose (docs/decisions/0005): a lockfile
+      # would change whenever a package releases a new version, for reasons that have
+      # nothing to do with the template. A real generated repo commits its own lockfile
+      # instead (docs/decisions/0006), so its CI can use `uv sync --locked` here.
+      - name: Install the example's own packages
+        run: uv sync
+
+      - name: Lint and types (ruff, mypy)
+        run: make lint
+
+      - name: Tests (pytest, coverage of src)
+        run: make test
+
+      - name: Docs checks (claims, readability, AI-writing signs, local links, README)
+        run: make check-docs
+
+      - name: Demo runs with no downloads or keys
+        run: make demo
+
+  web-links:
+    name: link check (lychee)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Web link check (lychee)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --config tools/lychee.toml './**/*.md'
+          fail: true
