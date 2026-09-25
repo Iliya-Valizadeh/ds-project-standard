@@ -78,7 +78,8 @@ def write_reports(reports_dir: Path) -> dict[str, Any]:
     metrics, est = run_evaluation()
     reports_dir.mkdir(parents=True, exist_ok=True)
     text = json.dumps(metrics, indent=2) + "\n"
-    (reports_dir / METRICS_FILE).write_text(text, encoding="utf-8")
+    # Always LF, so a run on Windows writes the same bytes as a run on Linux.
+    (reports_dir / METRICS_FILE).write_text(text, encoding="utf-8", newline="\n")
     plot_mae(
         [
             ("Baseline: training mean", est["baseline"], MUTED),
