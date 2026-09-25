@@ -39,6 +39,7 @@ REQUIRED = [
     "docs/how-to/run-the-checks.md",
     "docs/reference.md",
     "docs/explanation.md",
+    "docs/ml_test_score.md",
     "AI_USAGE.md",
     "CHANGELOG.md",
     "reports/metrics.json",
