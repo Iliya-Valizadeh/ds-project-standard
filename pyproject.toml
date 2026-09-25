@@ -42,7 +42,7 @@ known-first-party = [
 [tool.mypy]
 python_version = "3.11"
 strict = true
-files = ["tools", "tests"]
+files = ["tools", "tests", "scripts"]
 mypy_path = "tools"
 explicit_package_bases = true
 
