@@ -23,6 +23,3 @@ The first release. `copier copy` without `--vcs-ref` now uses this tag.
 - CI for this repo: tool tests, the example check with a fresh evaluation, the
   example's own gates, and a web link check.
 - A README, an MIT license file and this changelog.
-
-[Unreleased]: https://github.com/Iliya-Valizadeh/ds-project-standard/compare/v1.0...HEAD
-[1.0]: https://github.com/Iliya-Valizadeh/ds-project-standard/releases/tag/v1.0
