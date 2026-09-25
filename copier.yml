@@ -1,8 +1,15 @@
 # Copier settings for a new portfolio repo.
 #
-# New repo:     copier copy gh:Iliya-Valizadeh/ds-project-standard my-repo
-# Sync a repo:  copier update   (run inside the generated repo)
-# Then run `make setup` in the new repo. It writes uv.lock, which you commit.
+# New repo:     copier copy --trust gh:Iliya-Valizadeh/ds-project-standard my-repo
+# Sync a repo:  copier update --trust   (run inside the generated repo)
+#
+# The `_tasks` below run `uv lock` right after generation, so the new repo already has
+# a `uv.lock` that matches its `pyproject.toml`. Commit it with everything else, then
+# `make setup` to create the virtual environment. Without this, the generated repo's
+# own CI (which runs `uv sync --locked`) would fail on its first push: there would be
+# no lockfile yet to check against (see docs/decisions/0006-the-generated-lockfile.md).
+# `--trust` is needed because a task that runs a shell command is an "unsafe" template
+# feature to Copier. This is Iliya's own template, so trusting it is safe.
 #
 # The files a new repo gets are in template/. The checks in tools/ are copied into
 # each repo from this repo's own tools/ folder (see template/tools/*.jinja), so there
@@ -11,6 +18,8 @@
 _min_copier_version: "9.0"
 _subdirectory: template
 _answers_file: .copier-answers.yml
+_tasks:
+  - command: uv lock
 
 project_name:
   type: str
