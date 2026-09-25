@@ -17,7 +17,7 @@ the split avoids leaks (for example, split by time or by customer).
 
 TODO: the one number that decides whether the project worked, and why it fits the
 question. Say how its [confidence interval](glossary.md#confidence-interval) will be
-computed (for example, a bootstrap over test rows).
+computed (for example, a [bootstrap](glossary.md#bootstrap) over test rows).
 
 ## Baseline
 
