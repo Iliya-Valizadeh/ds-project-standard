@@ -38,6 +38,9 @@ State on 2026-09-25: all of these tests pass when run on a local machine. None o
 them has run in CI (continuous integration, the checks GitHub runs on every push),
 because the repo is not on GitHub yet. So no test can earn a full point today.
 
+Update: the repo is now on GitHub, and CI runs on every push to `main`. The scores
+below are still the 2026-09-25 ones; they have not been redone with CI counted.
+
 ## Summary
 
 | Section | Score out of 7 |
