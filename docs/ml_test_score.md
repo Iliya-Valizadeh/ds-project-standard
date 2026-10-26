@@ -9,8 +9,7 @@ copy of this page and scores itself.
 Google wrote a list of 28 tests for a machine learning system. <!-- not-a-claim -->
 A system should pass them before people rely on it.
 This page checks this repo against that list. It scores zero, the lowest level. That
-is expected for now. The model is a toy, nothing runs as a live service, and the
-checks have not yet run on GitHub.
+is expected for now. The model is a toy and nothing runs as a live service.
 
 ## How the scoring works
 
@@ -34,24 +33,21 @@ a linear model and reports the error of each with a bootstrap interval. The code
 `template/tests/test_pipeline.py.jinja`. The repo's own tests in `tests/` check the
 tools and render the template.
 
-State on 2026-09-25: all of these tests pass when run on a local machine. None of
-them has run in CI (continuous integration, the checks GitHub runs on every push),
-because the repo is not on GitHub yet. So no test can earn a full point today.
-
-Update: the repo is now on GitHub, and CI runs on every push to `main`. The scores
-below are still the 2026-09-25 ones; they have not been redone with CI counted.
+State on 2026-10-26: CI (continuous integration, the checks GitHub runs on every push)
+runs all of these tests, and CI run 40350257373 on `main` passed. A test that CI runs
+earns a full point. A test done by hand still earns half a point.
 
 ## Summary
 
 | Section | Score out of 7 |
 |---|---|
-| Features and data | half a point |
-| Model development | half a point |
-| Infrastructure | one and a half points |
+| Features and data | 1 |
+| Model development | 1 |
+| Infrastructure | 3 |
 | Monitoring | none |
 | Overall (the lowest section) | 0 |
 
-In total, five tests earn half a point each. The other tests earn nothing.
+In total, five tests earn one point each. The other tests earn nothing.
 
 ## Tests for features and data
 
@@ -63,7 +59,7 @@ In total, five tests earn half a point each. The other tests earn nothing.
 | 4 | Features adhere to meta-level requirements | none | The data is synthetic, so no outside rules apply yet. Nothing records or checks this |
 | 5 | The data pipeline has appropriate privacy controls | none | There is no personal data and no privacy control. A repo with real data must add one |
 | 6 | New features can be added quickly | none | Not measured |
-| 7 | All input feature code is tested | half | Tests cover `make_dataset` and `train_test_split`: fixed seeds, shapes and bad inputs. Run by hand only |
+| 7 | All input feature code is tested | one | Tests cover `make_dataset` and `train_test_split`: fixed seeds, shapes and bad inputs. CI runs them |
 
 ## Tests for model development
 
@@ -73,7 +69,7 @@ In total, five tests earn half a point each. The other tests earn nothing.
 | 2 | Offline and online metrics correlate | none | There is no online use |
 | 3 | All hyperparameters have been tuned | none | The linear model has no hyperparameters, and the template has no tuning code for models that do |
 | 4 | The impact of model staleness is known | none | The synthetic data does not change over time, so this was not studied |
-| 5 | A simpler model is not better | half | `evaluate.py` fits the mean baseline next to the model and reports the gap in mean absolute error with a paired bootstrap interval. A test checks that the model beats the baseline. Run by hand only |
+| 5 | A simpler model is not better | one | `evaluate.py` fits the mean baseline next to the model and reports the gap in mean absolute error with a paired bootstrap interval. A test checks that the model beats the baseline. CI runs it |
 | 6 | Model quality is sufficient on important data slices | none | No slices are defined or reported |
 | 7 | The model is tested for considerations of inclusion | none | The synthetic data describes no people, and nothing checks this |
 
@@ -81,9 +77,9 @@ In total, five tests earn half a point each. The other tests earn nothing.
 
 | # | Test | Score | Evidence or gap |
 |---|---|---|---|
-| 1 | Training is reproducible | half | Every random step uses a fixed seed. A test reruns the evaluation and compares it with the committed `reports/metrics.json`. The CI workflow installs packages from the lockfile. Run by hand only |
-| 2 | Model specs are unit tested | half | Tests check that the linear model recovers a known rule from data with no noise, that the baseline predicts the training mean, and that predicting before fitting fails. Run by hand only |
-| 3 | The ML pipeline is integration tested | half | One test runs the whole evaluation, from data to `metrics.json` and the chart. `tests/test_template.py` renders the template and runs the docs checks on the result. Run by hand only |
+| 1 | Training is reproducible | one | Every random step uses a fixed seed. A test reruns the evaluation and compares it with the committed `reports/metrics.json`. The CI workflow installs packages from the lockfile and runs this test |
+| 2 | Model specs are unit tested | one | Tests check that the linear model recovers a known rule from data with no noise, that the baseline predicts the training mean, and that predicting before fitting fails. CI runs them |
+| 3 | The ML pipeline is integration tested | one | One test runs the whole evaluation, from data to `metrics.json` and the chart. `tests/test_template.py` renders the template and runs the docs checks on the result. CI runs both |
 | 4 | Model quality is validated before serving | none | There is no serving step |
 | 5 | The model is debuggable | none | There is no tool to follow one example through the model step by step |
 | 6 | Models are canaried before serving | none | There is no serving step |
@@ -103,15 +99,14 @@ In total, five tests earn half a point each. The other tests earn nothing.
 
 ## What would raise the score
 
-- Put the repo on GitHub so CI runs the tests on every push. The five tests at half a
-  point should then earn a full point each. The overall score stays at zero until the
-  monitoring section earns a point.
 - Review changes through pull requests. This covers model test 1.
 - Add a schema check for the example data. This covers data test 1 and helps with
   monitoring test 2.
 - Turn on Dependabot, GitHub's tool that opens a pull request when a package has a new
   version. This covers monitoring test 1.
 - Check predictions for missing and infinite values. This covers monitoring test 5.
+
+The overall score stays at zero until the monitoring section earns a point.
 
 Most serving and monitoring tests only apply once a project runs as a live service.
 A repo made from this template should score itself again when it gets one.
