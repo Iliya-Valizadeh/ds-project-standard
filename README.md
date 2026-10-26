@@ -75,8 +75,6 @@ flowchart LR
 ## What's weak
 
 - `STANDARD.md` is still a draft. Iliya has not yet edited it into his own words.
-- The ML Test Score self-assessment was written before CI first ran on GitHub. It needs
-  a new score now that CI runs.
 - The worked example is a toy on synthetic data. It proves the files and checks work
   together, not that any model is good.
 - The readability check uses a reading-grade formula. Such formulas count words and
