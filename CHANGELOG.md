@@ -6,6 +6,20 @@ git tag.
 
 ## [Unreleased]
 
+## [1.1] - 2026-10-29
+
+### Removed
+
+- A per-repo notes file from the standard, the template and the example. New repos no
+  longer get it, and `make check-docs` no longer lists it.
+
+### Changed
+
+- The template and the example tell GitHub to leave the Makefile out of the language
+  bar (`.gitattributes`).
+- The docs, CI step names and the repo map call the prose check the writing-style
+  check.
+
 ## [1.0] - 2026-09-25
 
 The first release. `copier copy` without `--vcs-ref` now uses this tag.
@@ -18,7 +32,7 @@ The first release. `copier copy` without `--vcs-ref` now uses this tag.
   including CI, docs, a decision record folder and an ML Test Score page.
 - A worked example on synthetic data: a mean baseline against a linear model, with
   bootstrap intervals and one chart.
-- `STANDARD.md`, the house rules on one page (draft for Iliya to edit).
+- `STANDARD.md`, the house rules on one page (a draft I still have to edit).
 - `examples/example-project/`, rendered from the template and checked for drift in CI.
 - CI for this repo: tool tests, the example check with a fresh evaluation, the
   example's own gates, and a web link check.
