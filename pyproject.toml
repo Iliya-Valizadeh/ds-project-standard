@@ -38,7 +38,7 @@ select = ["E", "F", "W", "I", "B", "UP"]
 
 [tool.ruff.lint.isort]
 known-first-party = [
-    "_markdown", "ai_signs_check", "claims_check", "links_check", "readability_check",
+    "_markdown", "claims_check", "links_check", "readability_check", "writing_style_check",
     "readme_sections",
 ]
 
