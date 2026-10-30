@@ -12,7 +12,7 @@ finds a problem, it prints where it is and the build stops.
 
 | Tool | What it checks | Needs |
 |---|---|---|
-| `ai_signs_check.py` | Writing style: puffery words, em dashes, bold lead-ins, title-case headings | Python only |
+| `writing_style_check.py` | Writing style: puffery words, em dashes, bold lead-ins, title-case headings | Python only |
 | `claims_check.py` | Every number in `CLAIMS.md` matches its source file, and every number in the docs is listed in `CLAIMS.md` | Python only |
 | `readability_check.py` | Reading grade of the "In plain words" section and notes, reading grade of the rest, and glossary links on first use | `textstat` |
 | `links_check.py` | Links between local files and to sections inside them, with no network access | Python only |
@@ -28,7 +28,7 @@ source for how it works.
 From the root of a project:
 
 ```bash
-uv run python tools/ai_signs_check.py README.md docs
+uv run python tools/writing_style_check.py README.md docs
 uv run python tools/claims_check.py README.md docs
 uv run python tools/readability_check.py --glossary docs/glossary.md README.md docs
 uv run python tools/links_check.py README.md docs

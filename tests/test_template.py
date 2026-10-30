@@ -18,7 +18,7 @@ from copier import run_copy
 REPO = Path(__file__).resolve().parent.parent
 TOOLS = [
     "_markdown.py",
-    "ai_signs_check.py",
+    "writing_style_check.py",
     "claims_check.py",
     "links_check.py",
     "lychee.toml",
@@ -133,12 +133,12 @@ def test_answers_are_filled_in(project: Path) -> None:
 @pytest.mark.parametrize(
     "args",
     [
-        ["tools/ai_signs_check.py"],
+        ["tools/writing_style_check.py"],
         ["tools/claims_check.py"],
         ["tools/readability_check.py", "--glossary", "docs/glossary.md"],
         ["tools/links_check.py"],
     ],
-    ids=["ai-signs", "claims", "readability", "links"],
+    ids=["writing-style", "claims", "readability", "links"],
 )
 def test_docs_checks_pass(project: Path, args: list[str]) -> None:
     result = run_tool(project, *args, *doc_paths(project))

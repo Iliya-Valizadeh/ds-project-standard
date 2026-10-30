@@ -2,16 +2,16 @@ from pathlib import Path
 
 import pytest
 
-import ai_signs_check
 import readme_sections as rs
+import writing_style_check
 
 
-def test_skeleton_passes_its_own_check_and_ai_signs() -> None:
+def test_skeleton_passes_its_own_check_and_writing_style() -> None:
     text = rs.skeleton(
         "fraud-review-queue", "Ranks card payments so reviewers see risky ones first."
     )
     assert rs.check_readme(text) == []
-    assert ai_signs_check.check_text(text) == []
+    assert writing_style_check.check_text(text) == []
     headings = [line[3:] for line in text.splitlines() if line.startswith("## ")]
     assert headings == rs.SECTIONS
 

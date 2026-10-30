@@ -1,6 +1,6 @@
 [project]
 name = "ds-project-standard"
-version = "1.1.0"
+version = "1.2.0"
 description = "A Copier template for data science repos, with checks for sourced numbers, plain writing and links."
 readme = "tools/README.md"
 license = "MIT"
@@ -38,7 +38,7 @@ select = ["E", "F", "W", "I", "B", "UP"]
 
 [tool.ruff.lint.isort]
 known-first-party = [
-    "_markdown", "ai_signs_check", "claims_check", "links_check", "readability_check",
+    "_markdown", "claims_check", "links_check", "readability_check", "writing_style_check",
     "readme_sections",
 ]
 

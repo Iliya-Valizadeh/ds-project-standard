@@ -52,7 +52,7 @@ project is, whether it works and how well.
 |---|---|---|
 | Every number in `CLAIMS.md` matches the generated output | A number with no source is a claim nobody can check | [Cookiecutter Data Science][ccds] |
 | Reading grade 9 or lower for "In plain words" and notes, 12 or lower elsewhere <!-- not-a-claim --> | Plain text reaches readers whose first language is not English | [Canada.ca][canada] |
-| Zero flags from the writing-style check | Those patterns make readers stop trusting the text | [Signs of AI writing][wiki] |
+| Zero flags from the writing-style check | Those patterns make readers stop trusting the text | My own rule |
 | Links work | A dead link makes a project look abandoned | My own rule |
 | ruff, mypy, pytest, data tests, and 80% or more coverage of `src/` in new repos <!-- not-a-claim --> | Model code is a small part of a real system, and the rest needs tests too | [Sculley et al.][debt] |
 | `make all` regenerates every number, and `make demo` needs no downloads or keys | Anyone can rerun the work from code and raw data | [Cookiecutter Data Science][ccds], [Rules of ML, rule 4][rules] |
@@ -73,8 +73,8 @@ show these things before anyone opens the code. Source: [GitHub Docs][gh].
 | Short sentences, one idea each, active voice, no idioms | Many of my readers do not speak English as a first language | [Canada.ca][canada] |
 | Every chart gets one sentence on what to notice | Readers should not have to guess the point of a chart | [Canada.ca][canada] |
 | Every number comes with a comparison, an interval where one exists, and a unit | A number alone cannot tell you if it is good | [Rules of ML, rule 1][rules] |
-| Never oversell: "points in a direction" is fine, "proves" almost never is | One exposed overclaim costs more trust than any polish gains | [Signs of AI writing][wiki] |
-| Leave out puffery, negative parallelism, bold lead-ins, em dashes and padded lists of three | These are known signs of AI writing | [Signs of AI writing][wiki] |
+| Never oversell: "points in a direction" is fine, "proves" almost never is | One exposed overclaim costs more trust than any polish gains | My own rule |
+| Leave out puffery, negative parallelism, bold lead-ins, em dashes and padded lists of three | They pad the text and make readers trust it less | My own rule |
 
 ## Sources
 
@@ -90,7 +90,6 @@ show these things before anyone opens the code. Source: [GitHub Docs][gh].
 - [Canada.ca Content Style Guide][canada]
 - [GitHub Docs on default community health files][gh]
 - [Keep a Changelog][changelog]
-- Wikipedia, [Signs of AI writing][wiki]
 
 [rules]: https://developers.google.com/machine-learning/guides/rules-of-ml
 [debt]: https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems
@@ -104,4 +103,3 @@ show these things before anyone opens the code. Source: [GitHub Docs][gh].
 [canada]: https://design.canada.ca/style-guide/
 [gh]: https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file
 [changelog]: https://keepachangelog.com/en/1.1.0/
-[wiki]: https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing
