@@ -10,7 +10,7 @@ git tag.
 
 ### Changed
 
-- `tools/ai_signs_check.py` is now `tools/writing_style_check.py`. The rules and the
+- The writing-style check script is now `tools/writing_style_check.py`. The rules and the
   zero-flag threshold are the same. Two flag names changed: "puffery word" and "chatty
   address". Repos that run `copier update` get the new file and Makefile line.
 - `STANDARD.md` lists the writing-style rules as my own rules and no longer cites an
@@ -20,14 +20,14 @@ git tag.
 
 ### Removed
 
-- `AI_USAGE.md` from the standard, the template and the example. New repos no longer
-  get it, and `make check-docs` no longer lists it.
+- A per-repo notes file from the standard, the template and the example. New repos no
+  longer get it, and `make check-docs` no longer lists it.
 
 ### Changed
 
 - The template and the example tell GitHub to leave the Makefile out of the language
   bar (`.gitattributes`).
-- The docs, CI step names and the repo map call `ai_signs_check.py` the writing-style
+- The docs, CI step names and the repo map call the prose check the writing-style
   check.
 
 ## [1.0] - 2026-09-25
