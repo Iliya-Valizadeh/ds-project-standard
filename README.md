@@ -74,7 +74,7 @@ flowchart LR
 
 ## What's weak
 
-- `STANDARD.md` is still a draft. Iliya has not yet edited it into his own words.
+- `STANDARD.md` is still a draft. I have not yet edited it into my own words.
 - The worked example is a toy on synthetic data. It proves the files and checks work
   together, not that any model is good.
 - The readability check uses a reading-grade formula. Such formulas count words and
