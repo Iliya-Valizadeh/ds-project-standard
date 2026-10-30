@@ -40,7 +40,6 @@ project is, whether it works and how well.
 | `docs/whats_weak.md` and `docs/glossary.md` | The full list of limits, and one plain sentence for each technical term | [Model cards][cards], [Canada.ca][canada] |
 | Tutorial, how-to, reference and explanation pages | Four kinds of docs, kept apart | [Diátaxis][diataxis] |
 | `MODEL_CARD.md` and `DATASHEET.md`, when there is a model or a dataset | Say what the model or data is for, and where it fails | [Mitchell et al.][cards], [Gebru et al.][sheets] |
-| `AI_USAGE.md` | Says what I decided and checked, and what the AI assistant wrote | My own rule |
 | `CHANGELOG.md`, tied to tags | Readers see what changed between versions | [Keep a Changelog][changelog] |
 | `reports/metrics.json` | My profile and site read numbers from this file, so they never drift from the code | My own rule |
 | `Makefile`, `pyproject.toml` and a lockfile | One command per step, with pinned packages, so a rerun gives the same numbers | [Cookiecutter Data Science][ccds] |
@@ -53,7 +52,7 @@ project is, whether it works and how well.
 |---|---|---|
 | Every number in `CLAIMS.md` matches the generated output | A number with no source is a claim nobody can check | [Cookiecutter Data Science][ccds] |
 | Reading grade 9 or lower for "In plain words" and notes, 12 or lower elsewhere <!-- not-a-claim --> | Plain text reaches readers whose first language is not English | [Canada.ca][canada] |
-| Zero flags from the AI-writing signs check | Those patterns make readers stop trusting the text | [Signs of AI writing][wiki] |
+| Zero flags from the writing-style check | Those patterns make readers stop trusting the text | [Signs of AI writing][wiki] |
 | Links work | A dead link makes a project look abandoned | My own rule |
 | ruff, mypy, pytest, data tests, and 80% or more coverage of `src/` in new repos <!-- not-a-claim --> | Model code is a small part of a real system, and the rest needs tests too | [Sculley et al.][debt] |
 | `make all` regenerates every number, and `make demo` needs no downloads or keys | Anyone can rerun the work from code and raw data | [Cookiecutter Data Science][ccds], [Rules of ML, rule 4][rules] |

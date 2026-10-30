@@ -9,7 +9,7 @@
 # own CI (which runs `uv sync --locked`) would fail on its first push: there would be
 # no lockfile yet to check against (see docs/decisions/0006-the-generated-lockfile.md).
 # `--trust` is needed because a task that runs a shell command is an "unsafe" template
-# feature to Copier. This is Iliya's own template, so trusting it is safe.
+# feature to Copier. This is my own template, so trusting it is safe.
 #
 # The files a new repo gets are in template/. The checks in tools/ are copied into
 # each repo from this repo's own tools/ folder (see template/tools/*.jinja), so there

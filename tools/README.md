@@ -12,7 +12,7 @@ finds a problem, it prints where it is and the build stops.
 
 | Tool | What it checks | Needs |
 |---|---|---|
-| `ai_signs_check.py` | Common signs of AI writing: puffery words, em dashes, bold lead-ins, title-case headings | Python only |
+| `ai_signs_check.py` | Writing style: puffery words, em dashes, bold lead-ins, title-case headings | Python only |
 | `claims_check.py` | Every number in `CLAIMS.md` matches its source file, and every number in the docs is listed in `CLAIMS.md` | Python only |
 | `readability_check.py` | Reading grade of the "In plain words" section and notes, reading grade of the rest, and glossary links on first use | `textstat` |
 | `links_check.py` | Links between local files and to sections inside them, with no network access | Python only |
@@ -42,7 +42,7 @@ Add `--help` to any Python tool to see its options.
 
 ## Limits of these checks
 
-- The AI-signs check only finds patterns that a regular expression can find. Lists of
+- The writing-style check only finds patterns that a regular expression can find. Lists of
   three used for rhythm and empty praise in new words still need a person to read
   the text.
 - The claims check skips small whole numbers (0 to 10) and years, because most are

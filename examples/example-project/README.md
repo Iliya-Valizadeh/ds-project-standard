@@ -35,7 +35,6 @@ TODO: one chart, with a caption that says what to notice.
 - Error analysis: TODO: link.
 - How ready it is for production, scored against Breck et al.'s checklist:
   [docs/ml_test_score.md](docs/ml_test_score.md).
-- How the AI assistant was used: [AI_USAGE.md](AI_USAGE.md).
 
 ## How it works
 
@@ -73,7 +72,7 @@ The full list is in [docs/whats_weak.md](docs/whats_weak.md).
 | `reports/` | Generated results, including metrics.json |
 | `src/` | The package code |
 | `tests/` | Unit and data tests |
-| `tools/` | Checks for claims, readability, AI-writing signs and links |
+| `tools/` | Checks for claims, readability, writing style and links |
 <!-- repo-map:end -->
 
 ## License
