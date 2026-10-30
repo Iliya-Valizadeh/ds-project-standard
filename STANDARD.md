@@ -52,7 +52,7 @@ project is, whether it works and how well.
 |---|---|---|
 | Every number in `CLAIMS.md` matches the generated output | A number with no source is a claim nobody can check | [Cookiecutter Data Science][ccds] |
 | Reading grade 9 or lower for "In plain words" and notes, 12 or lower elsewhere <!-- not-a-claim --> | Plain text reaches readers whose first language is not English | [Canada.ca][canada] |
-| Zero flags from the AI-writing signs check | Those patterns make readers stop trusting the text | [Signs of AI writing][wiki] |
+| Zero flags from the writing-style check | Those patterns make readers stop trusting the text | [Signs of AI writing][wiki] |
 | Links work | A dead link makes a project look abandoned | My own rule |
 | ruff, mypy, pytest, data tests, and 80% or more coverage of `src/` in new repos <!-- not-a-claim --> | Model code is a small part of a real system, and the rest needs tests too | [Sculley et al.][debt] |
 | `make all` regenerates every number, and `make demo` needs no downloads or keys | Anyone can rerun the work from code and raw data | [Cookiecutter Data Science][ccds], [Rules of ML, rule 4][rules] |

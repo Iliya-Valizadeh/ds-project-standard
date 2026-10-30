@@ -72,7 +72,7 @@ The full list is in [docs/whats_weak.md](docs/whats_weak.md).
 | `reports/` | Generated results, including metrics.json |
 | `src/` | The package code |
 | `tests/` | Unit and data tests |
-| `tools/` | Checks for claims, readability, AI-writing signs and links |
+| `tools/` | Checks for claims, readability, writing style and links |
 <!-- repo-map:end -->
 
 ## License

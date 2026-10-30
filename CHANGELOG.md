@@ -17,6 +17,8 @@ git tag.
 
 - The template and the example tell GitHub to leave the Makefile out of the language
   bar (`.gitattributes`).
+- The docs, CI step names and the repo map call `ai_signs_check.py` the writing-style
+  check.
 
 ## [1.0] - 2026-09-25
 
@@ -24,7 +26,7 @@ The first release. `copier copy` without `--vcs-ref` now uses this tag.
 
 ### Added
 
-- Checks in `tools/`: AI-writing signs, claims, readability, local links, README
+- Checks in `tools/`: writing style, claims, readability, local links, README
   sections, and a lychee config for web links, each with tests.
 - A Copier template in `template/` with every file the house standard asks for,
   including CI, docs, a decision record folder and an ML Test Score page.
