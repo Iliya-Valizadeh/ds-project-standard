@@ -17,6 +17,8 @@ git tag.
 
 - The template and the example tell GitHub to leave the Makefile out of the language
   bar (`.gitattributes`).
+- The docs, CI step names and the repo map call the prose check the writing-style
+  check.
 
 ## [1.0] - 2026-09-25
 
