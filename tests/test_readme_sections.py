@@ -2,8 +2,8 @@ from pathlib import Path
 
 import pytest
 
-import writing_style_check
 import readme_sections as rs
+import writing_style_check
 
 
 def test_skeleton_passes_its_own_check_and_writing_style() -> None:
