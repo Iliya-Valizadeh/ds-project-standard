@@ -90,7 +90,6 @@ show these things before anyone opens the code. Source: [GitHub Docs][gh].
 - [Canada.ca Content Style Guide][canada]
 - [GitHub Docs on default community health files][gh]
 - [Keep a Changelog][changelog]
-- Wikipedia, My own rule
 
 [rules]: https://developers.google.com/machine-learning/guides/rules-of-ml
 [debt]: https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems
