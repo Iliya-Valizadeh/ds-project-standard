@@ -41,7 +41,6 @@ REQUIRED = [
     "docs/reference.md",
     "docs/explanation.md",
     "docs/ml_test_score.md",
-    "AI_USAGE.md",
     "CHANGELOG.md",
     "reports/metrics.json",
     "reports/figures/mae_by_model.png",
@@ -92,7 +91,6 @@ def doc_paths(root: Path) -> list[str]:
         "README.md",
         "CLAIMS.md",
         "CHANGELOG.md",
-        "AI_USAGE.md",
         "MODEL_CARD.md",
         "DATASHEET.md",
     ]

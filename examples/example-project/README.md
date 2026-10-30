@@ -35,7 +35,6 @@ TODO: one chart, with a caption that says what to notice.
 - Error analysis: TODO: link.
 - How ready it is for production, scored against Breck et al.'s checklist:
   [docs/ml_test_score.md](docs/ml_test_score.md).
-- How the AI assistant was used: [AI_USAGE.md](AI_USAGE.md).
 
 ## How it works
 

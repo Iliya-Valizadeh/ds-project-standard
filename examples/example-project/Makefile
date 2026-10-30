@@ -3,7 +3,7 @@
 
 PKG := example_project
 RUN := uv run
-DOCS := README.md CLAIMS.md CHANGELOG.md AI_USAGE.md $(wildcard MODEL_CARD.md DATASHEET.md) docs
+DOCS := README.md CLAIMS.md CHANGELOG.md $(wildcard MODEL_CARD.md DATASHEET.md) docs
 
 .PHONY: setup lint test eval demo check-docs all
 

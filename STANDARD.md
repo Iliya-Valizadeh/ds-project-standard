@@ -40,7 +40,6 @@ project is, whether it works and how well.
 | `docs/whats_weak.md` and `docs/glossary.md` | The full list of limits, and one plain sentence for each technical term | [Model cards][cards], [Canada.ca][canada] |
 | Tutorial, how-to, reference and explanation pages | Four kinds of docs, kept apart | [Diátaxis][diataxis] |
 | `MODEL_CARD.md` and `DATASHEET.md`, when there is a model or a dataset | Say what the model or data is for, and where it fails | [Mitchell et al.][cards], [Gebru et al.][sheets] |
-| `AI_USAGE.md` | Says what I decided and checked, and what the AI assistant wrote | My own rule |
 | `CHANGELOG.md`, tied to tags | Readers see what changed between versions | [Keep a Changelog][changelog] |
 | `reports/metrics.json` | My profile and site read numbers from this file, so they never drift from the code | My own rule |
 | `Makefile`, `pyproject.toml` and a lockfile | One command per step, with pinned packages, so a rerun gives the same numbers | [Cookiecutter Data Science][ccds] |
