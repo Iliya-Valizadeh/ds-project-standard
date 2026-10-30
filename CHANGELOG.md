@@ -18,7 +18,7 @@ The first release. `copier copy` without `--vcs-ref` now uses this tag.
   including CI, docs, a decision record folder and an ML Test Score page.
 - A worked example on synthetic data: a mean baseline against a linear model, with
   bootstrap intervals and one chart.
-- `STANDARD.md`, the house rules on one page (draft for Iliya to edit).
+- `STANDARD.md`, the house rules on one page (a draft I still have to edit).
 - `examples/example-project/`, rendered from the template and checked for drift in CI.
 - CI for this repo: tool tests, the example check with a fresh evaluation, the
   example's own gates, and a web link check.
