@@ -6,6 +6,18 @@ git tag.
 
 ## [Unreleased]
 
+## [1.1] - 2026-10-29
+
+### Removed
+
+- `AI_USAGE.md` from the standard, the template and the example. New repos no longer
+  get it, and `make check-docs` no longer lists it.
+
+### Changed
+
+- The template and the example tell GitHub to leave the Makefile out of the language
+  bar (`.gitattributes`).
+
 ## [1.0] - 2026-09-25
 
 The first release. `copier copy` without `--vcs-ref` now uses this tag.
