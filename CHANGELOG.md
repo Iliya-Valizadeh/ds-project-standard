@@ -6,6 +6,16 @@ git tag.
 
 ## [Unreleased]
 
+## [1.2] - 2026-10-29
+
+### Changed
+
+- The writing-style check script is now `tools/writing_style_check.py`. The rules and the
+  zero-flag threshold are the same. Two flag names changed: "puffery word" and "chatty
+  address". Repos that run `copier update` get the new file and Makefile line.
+- `STANDARD.md` lists the writing-style rules as my own rules and no longer cites an
+  outside page for them.
+
 ## [1.1] - 2026-10-29
 
 ### Removed
